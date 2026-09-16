@@ -13,8 +13,8 @@ console.log(typeof user);
 //=================================
 
 //Dot Notation
-console.log(user.name);
-console.log(user.age);
+console.log(user.name1);
+console.log(user.age1);
 console.log(user.isDeveloper);
 
 //Bracket notation
@@ -203,3 +203,168 @@ console.log(0 ?? 100); // 0
 
 console.log(null || "Guest"); // Guest
 console.log(null ?? "Guest"); // Guest
+
+
+//================
+//Object Shorthand
+//================
+//when the property and the var name are the same, we can write like this:
+
+//original
+const example = "xxxxx"
+const example2 = "123456789"
+/*
+const exampObj = {
+  example: example,
+  example2: example2
+};
+*/
+
+//shorthand
+const exampObj = {
+  example,
+  example2
+};
+
+
+//================
+//Computed Property
+//================
+const key = "name";
+const value = "Sepehr"
+
+const objPrac = {
+  [key]:value,
+};
+
+
+
+//================
+//This in Objects
+//================
+
+const user3 = {
+  name: "Sepehr",
+
+  sayHello() {
+    console.log("Hello " + this.name);
+  },
+};
+
+user3.sayHello();
+
+//exercise
+const product2 ={
+  name:"LapTop",
+  price:"1000",
+  getInfo() {
+    console.log(`Product: ${this.name}`);
+    console.log(`Price: ${this.price}`);
+  },
+};
+
+product2.getInfo();
+
+product2.price = "2000";
+
+product2.getInfo();
+
+
+//==============
+//Object + Array
+//==============
+const products = [
+  {
+    name: "Laptop",
+    price: 1000,
+  },
+  {
+    name: "Phone",
+    price: 500,
+  },
+  {
+    name: "Tablet",
+    price: 700,
+  },
+];
+console.log(products[0].name);
+console.log(products[0]["name"]);
+console.log(products[1].price);
+
+//map functin
+const productNames = products.map(product => product.name);
+console.log(productNames);
+
+//filter function
+const expensiveProducts = products.filter(product => product.price > 600);
+
+console.log(expensiveProducts);
+
+//exercise
+const products2 = [
+  {
+    name: "Laptop",
+    price: 1000,
+    inStock: true,
+  },
+  {
+    name: "Phone",
+    price: 500,
+    inStock: false,
+  },
+  {
+    name: "Tablet",
+    price: 700,
+    inStock: true,
+  },
+];
+
+const productsOver600 = products2.filter(product => product.price >= 600);
+console.log(productsOver600);
+const productsInstock = products2.filter(product => product.inStock === true)
+console.log(productsInstock);
+const productNamesInstock = products2.filter(product => product.inStock === true).map(product => product.name);
+console.log(productNamesInstock);
+
+//find()
+const oneProductWithCondition = products2.find(product => product.price > 600);
+
+console.log(oneProductWithCondition);
+
+//some() this is a boolean function
+//checks that is there at least one item with the condition in our list or not
+console.log(products2.some(product => product.price > 900));
+
+//every() checks all the items that follow our conditions
+console.log(products2.every(product => product.price > 400));
+
+//Reduce()
+const totalPrice = products2.reduce( (total, product) => total + product.price , 0 );
+
+console.log(totalPrice);
+
+//another example of reduce
+const inStockCount = products2.reduce(
+  (count, product) => count + (product.inStock ? 1 : 0),
+  0
+);
+
+console.log(inStockCount);
+
+//sort()
+const sortedProducts = [...products2].sort(
+  (a, b) => b.price - a.price
+);
+
+console.log(sortedProducts);
+
+//last exercies
+const justInstockAndOver600 = products2.filter(product => product.price > 600).filter(product => product.inStock);
+//you can also write (product => product.price > 600 && product.inStock)
+console.log(justInstockAndOver600);
+
+const theMostExpensive = [...products2].sort((a,b) => b.price - a.price)[0];
+console.log(theMostExpensive);
+
+const wholePrice = products2.reduce((total,current) => total + current.price ,0)
+console.log(wholePrice);
