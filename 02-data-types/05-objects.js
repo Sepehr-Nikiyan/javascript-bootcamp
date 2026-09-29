@@ -335,7 +335,7 @@ console.log(oneProductWithCondition);
 //checks that is there at least one item with the condition in our list or not
 console.log(products2.some(product => product.price > 900));
 
-//every() checks all the items that follow our conditions
+//every() checks all the items so that they follow our conditions
 console.log(products2.every(product => product.price > 400));
 
 //Reduce()
